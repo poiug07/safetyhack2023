@@ -5,6 +5,7 @@ import pandas as pd
 
 app = FastAPI()
 data = pd.read_csv('data.csv')
+data['timestamp'] = pd.to_datetime(data['timestamp'])
 
 origins = [
     "http://127.0.0.1",
@@ -57,9 +58,20 @@ async def get_summary():
     workers = list(map(int, data["worker_id"].unique()))
     a = map(get_reward_func, workers)
     rewards = list(map(lambda x: x["reward"], a))
+    resp = [
+        {"name": "Total", "value": sum(rewards)},
+        {"name": "Best", "value": max(rewards)},
+        {"name":"Worst", "value": min(rewards)},
+    ]
+    return resp
+
+@app.get("/api/points/{worker_id}")
+async def get_points(worker_id):
+    worker_data = data[data["worker_id"]==int(worker_id)]
+    resample = worker_data.resample('30Min', on='timestamp')
     resp = {
-        "total": sum(rewards),
-        "best": max(rewards),
-        "worst": min(rewards)
+        "ppe": list(map(int, resample["ppe"].mean())),
+        "danger": list(map(int, resample["danger"].mean())),
+        "safety_harness": list(map(int, resample["safety_harness"].mean())),
     }
     return resp

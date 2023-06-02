@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white p-3 bg-white rounded-lg">
+    <div class="bg-white p-10 pt-5 bg-white rounded-lg">
       <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-4">Summary of workers</h2>
       <div class="mx-auto max-w-7xl px-6 lg:px-8 py-5">
         <dl class="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
@@ -12,10 +12,17 @@
     </div>
   </template>
   
-  <script setup>
-  const stats = [
-    { id: 1, name: 'Total Reward', value: '30000' },
-    { id: 2, name: 'Best Reward', value: '20000' },
-    { id: 3, name: 'Worst Reward', value: '5000' },
-  ]
-  </script>
+<script>
+export default {
+  data() {
+    return {
+      stats: {}
+    }
+  },
+  async mounted() {
+    const response = await fetch(`http://localhost:8000/api/summary`);
+    this.stats = await response.json();
+    console.log(this.stats);
+  }
+}
+</script>
