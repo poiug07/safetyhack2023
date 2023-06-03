@@ -1,6 +1,6 @@
 <template>
     <div class="bg-white p-10 pt-5 bg-white rounded-lg">
-      <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-4">Summary of workers</h2>
+      <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-4">Summary of worker rewards</h2>
       <div class="mx-auto max-w-7xl px-6 lg:px-8 py-5">
         <dl class="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
           <div v-for="stat in stats" :key="stat.id" class="mx-auto flex max-w-xs flex-col gap-y-4">

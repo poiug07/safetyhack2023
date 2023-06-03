@@ -59,9 +59,9 @@ async def get_summary():
     a = map(get_reward_func, workers)
     rewards = list(map(lambda x: x["reward"], a))
     resp = [
-        {"name": "Total", "value": sum(rewards)},
-        {"name": "Best", "value": max(rewards)},
-        {"name":"Worst", "value": min(rewards)},
+        {"name": "Total rewards", "value": sum(rewards)},
+        {"name": "Best worker's reward", "value": max(rewards)},
+        {"name":"Worst performer's reward", "value": min(rewards)},
     ]
     return resp
 
