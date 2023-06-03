@@ -37,6 +37,7 @@ export default {
             reward: 0,
             rewardsVisible: false,
             chartdata: {},
+            workers: [],
         }
     },
     methods: {
@@ -45,21 +46,37 @@ export default {
                 this.rewardsVisible = false;
                 return;
             }
-            const response = await fetch(`http://localhost:8000/api/workers/${worker}/reward`);
+            const response = await fetch(`https://e1fb-175-45-22-2.ngrok-free.app/api/workers/${worker}/reward`, {
+      headers: {
+        "ngrok-skip-browser-warning": "69420",
+        "Content-Type": "application/json",
+      },
+      mode: 'cors'});
             const reward = await response.json();
             this.selectedWorker = worker;
             this.reward = reward.reward;
             this.rewardsVisible = true;
 
-            const pointsresp = await fetch(`http://localhost:8000/api/points/${worker}`);
+            const pointsresp = await fetch(`https://e1fb-175-45-22-2.ngrok-free.app/api/points/${worker}`, {
+      headers: {
+        "ngrok-skip-browser-warning": "69420",
+        "Content-Type": "application/json",
+      },
+      mode: 'cors'});
             const points = await pointsresp.json();
             this.chartdata = points;
             console.log(this.chartdata);
         }
     },
+    async mounted() {
+        const response = await fetch("https://e1fb-175-45-22-2.ngrok-free.app/api/workers", {
+        headers: {
+            "ngrok-skip-browser-warning": "69420",
+            "Content-Type": "application/json",
+        },
+        mode: 'cors'});
+        this.workers = await response.json();
+        console.log(this.workers);
+    }
 }
-
-const response = await fetch("http://localhost:8000/api/workers");
-const workers = await response.json();
-console.log(workers);
 </script>

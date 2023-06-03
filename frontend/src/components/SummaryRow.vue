@@ -22,7 +22,12 @@ export default {
         }
     },
     async mounted() {
-        const response = await fetch(`http://localhost:8000/api/sumstat/${this.worker_id}`);
+        const response = await fetch(`https://e1fb-175-45-22-2.ngrok-free.app/api/sumstat/${this.worker_id}`, {
+      headers: {
+        "ngrok-skip-browser-warning": "69420",
+        "Content-Type": "application/json",
+      },
+      mode: 'cors'});
         const data = await response.json();
         this.ppe = data.ppe;
         this.danger = data.danger;

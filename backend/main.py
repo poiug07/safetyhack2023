@@ -8,14 +8,13 @@ data = pd.read_csv('data.csv')
 data['timestamp'] = pd.to_datetime(data['timestamp'])
 
 origins = [
-    "http://127.0.0.1",
-    "http://127.0.0.1:5173",
+    "https://safety-hack-poiug07.vercel.app",
 ]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )

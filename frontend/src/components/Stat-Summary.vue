@@ -20,7 +20,14 @@ export default {
     }
   },
   async mounted() {
-    const response = await fetch(`http://localhost:8000/api/summary`);
+    const response = await fetch(
+      `https://e1fb-175-45-22-2.ngrok-free.app/api/summary`,
+    {
+      headers: {
+        "ngrok-skip-browser-warning": "69420",
+        "Content-Type": "application/json",
+      },
+      mode: 'cors'});
     this.stats = await response.json();
     console.log(this.stats);
   }
