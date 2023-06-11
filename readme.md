@@ -19,4 +19,4 @@ This repo has frontend(Vue.js), backend(FastAPI) and data generation code of sam
 
 Python environment(Micromamba) in `env.yaml` file. It is required by `datagen` and `backend`.
 
-Big thanks to my friend Glenn Salter for helping to write `datagen`.
+Big thanks to my friend [Glenn Salter](https://github.com/glennsalter/) for helping to write `datagen`.
