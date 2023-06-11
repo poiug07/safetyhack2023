@@ -1,9 +1,3 @@
-Create and activate virtual environment
-`python -m venv .venv`  
-Activate virtualenv on windows:
-`.venv/Scripts/activate`
-Activate virtualenv on mac:  
-`source .venv/bin/activate`  
+# Datagen
 
-Install all packages
-`pip install -r requirements.txt`
+Project generates data for this project. Configs can be tweaked to give desired characteristics for the "workers".
